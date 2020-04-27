@@ -1,0 +1,33 @@
+{
+    "name": "lizhineng/nova-relation-search",
+    "description": "Handle relation search feature on Nova resource.",
+    "authors": [
+        {
+            "name": "Li Zhineng",
+            "email": "im@zhineng.li"
+        }
+    ],
+    "require": {
+        "laravel/nova": "~3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.1",
+        "phpunit/phpunit": "^9"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LiZhineng\\NovaRelationSearch\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LiZhineng\\NovaRelationSearch\\Tests\\": "tests/"
+        }
+    }
+}
