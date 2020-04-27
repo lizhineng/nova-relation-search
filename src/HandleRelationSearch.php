@@ -4,11 +4,25 @@ namespace LiZhineng\NovaRelationSearch;
 
 trait HandleRelationSearch
 {
+    /**
+     * Apply the search query to the query.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $search
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     protected static function applySearch($query, $search)
     {
         return static::applyRelationSearch(parent::applySearch($query, $search), $search);
     }
 
+    /**
+     * Apply the relation search query to the query.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $search
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     protected static function applyRelationSearch($query, $search)
     {
         foreach (static::searchableRelationColumns() as $relation => $searchableColumns) {
@@ -20,6 +34,11 @@ trait HandleRelationSearch
         return $query;
     }
 
+    /**
+     * Get the searchable relation columns for the resource.
+     *
+     * @return array
+     */
     protected static function searchableRelationColumns()
     {
         return empty(static::$relationSearch)
@@ -27,6 +46,14 @@ trait HandleRelationSearch
             : static::$relationSearch;
     }
 
+    /**
+     * Build the relation search query for the given resource.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $search
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     protected static function buildSearchQuery($query, $search, $columns)
     {
         return $query->where(function ($query) use ($search, $columns) {
